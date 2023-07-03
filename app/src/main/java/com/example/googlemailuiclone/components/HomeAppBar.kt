@@ -39,7 +39,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
                .padding(8.dp)) {
 
                IconButton(onClick = {
-                    scope.launch {
+                        scope.launch {
                         scaffoldState.drawerState.open()
                     }
                }) {
