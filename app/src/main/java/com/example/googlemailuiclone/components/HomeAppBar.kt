@@ -55,8 +55,12 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
                    .clip(CircleShape)
                    .background(color = Color.Gray)
                    .clickable {
-
+                       openDialog.value = true
                    })
+
+               if(openDialog.value){
+                   AccountsDialog(openDialog = openDialog)
+               }
            }
        } 
     }
