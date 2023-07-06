@@ -21,9 +21,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.contentValuesOf
+import com.example.googlemailuiclone.components.GMailFab
 import com.example.googlemailuiclone.components.GmailDrawerMenu
 import com.example.googlemailuiclone.components.HomeAppBar
 import com.example.googlemailuiclone.components.HomeBottomMenu
+import com.example.googlemailuiclone.components.MailList
 import com.example.googlemailuiclone.ui.theme.GoogleMailUICloneTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,18 +52,24 @@ fun GmailApp(){
     var scaffoldState = rememberScaffoldState()
     var coroutineScope =  rememberCoroutineScope()
     var scrollState =  rememberScrollState()
-
+    val openDialog = remember{
+        mutableStateOf(false)
+    }
 
     Scaffold(
         scaffoldState = scaffoldState
-        ,topBar = {HomeAppBar(scaffoldState,coroutineScope)},
+        ,topBar = {HomeAppBar(scaffoldState,coroutineScope,openDialog)},
         drawerContent = {
         GmailDrawerMenu(scrollState)
     },
     bottomBar = {
         HomeBottomMenu()
-    }) {
-
+    },
+    floatingActionButton = {
+        GMailFab(scrollState)
+    }
+        ) {
+        MailList(paddingValues = it, scrollState)
     }
 }
 

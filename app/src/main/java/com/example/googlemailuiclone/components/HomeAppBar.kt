@@ -2,6 +2,7 @@ package com.example.googlemailuiclone.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,7 +26,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
+fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
+            openDialog: MutableState<Boolean>){
     Box(modifier = Modifier.padding(10.dp)) {
        Card(
            modifier = Modifier.requiredHeight(50.dp),
@@ -36,7 +39,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
                .padding(8.dp)) {
 
                IconButton(onClick = {
-                    scope.launch {
+                        scope.launch {
                         scaffoldState.drawerState.open()
                     }
                }) {
@@ -50,7 +53,14 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
                modifier = Modifier
                    .size(30.dp)
                    .clip(CircleShape)
-                   .background(color = Color.Gray))
+                   .background(color = Color.Gray)
+                   .clickable {
+                       openDialog.value = true
+                   })
+
+               if(openDialog.value){
+                   AccountsDialog(openDialog = openDialog)
+               }
            }
        } 
     }
