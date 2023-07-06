@@ -1,5 +1,6 @@
 package com.example.googlemailuiclone
 
+import com.example.googlemailuiclone.model.Account
 import com.example.googlemailuiclone.model.MailData
 
 val mailList = listOf(
@@ -73,4 +74,12 @@ val mailList = listOf(
         Body = "We have an opening that suits your profile kindly check it out and indicate your interest",
         Timestamp = "20:10"
     )
+)
+
+
+val accountlist =  listOf<Account>(
+    Account(icon = R.drawable.shepherd, "Lumbani Makumbi","trojanhorse@gmail.com", 120),
+    Account( userName = "Shicco Chinsapo", email = "chinsapo@gmail.com", unReadMails = 300),
+    Account( userName = "Kwaku Rasta", email = "rasta@gmail.com", unReadMails = 60),
+
 )
